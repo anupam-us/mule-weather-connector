@@ -1,7 +1,12 @@
 package org.mule.extension.weather.internal;
 
+import static org.mule.runtime.api.meta.Category.COMMUNITY;
+
+import org.mule.extension.weather.connection.WeatherConnectionProvider;
+import org.mule.extension.weather.operation.WeatherZipOperations;
 import org.mule.runtime.extension.api.annotation.Extension;
-import org.mule.runtime.extension.api.annotation.Configurations;
+import org.mule.runtime.extension.api.annotation.Operations;
+import org.mule.runtime.extension.api.annotation.connectivity.ConnectionProviders;
 import org.mule.runtime.extension.api.annotation.dsl.xml.Xml;
 
 
@@ -10,8 +15,9 @@ import org.mule.runtime.extension.api.annotation.dsl.xml.Xml;
  * and sources are going to be declared.
  */
 @Xml(prefix = "weather")
-@Extension(name = "Weather")
-@Configurations(WeatherConfiguration.class)
+@ConnectionProviders(WeatherConnectionProvider.class)
+@Extension(name = "Weather", vendor = "anupam.us", category = COMMUNITY)
+@Operations({WeatherZipOperations.class})
 public class WeatherExtension {
 
 }

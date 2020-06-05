@@ -1,4 +1,4 @@
-package org.mule.extension.weather.internal;
+package org.mule.extension.weather.connection;
 
 
 /**

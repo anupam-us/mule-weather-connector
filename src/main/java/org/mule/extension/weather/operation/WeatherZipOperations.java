@@ -1,7 +1,9 @@
-package org.mule.extension.weather.internal;
+package org.mule.extension.weather.operation;
 
 import static org.mule.runtime.extension.api.annotation.param.MediaType.ANY;
 
+import org.mule.extension.weather.connection.WeatherConfiguration;
+import org.mule.extension.weather.connection.WeatherConnection;
 import org.mule.runtime.extension.api.annotation.param.MediaType;
 import org.mule.runtime.extension.api.annotation.param.Config;
 import org.mule.runtime.extension.api.annotation.param.Connection;
@@ -10,7 +12,7 @@ import org.mule.runtime.extension.api.annotation.param.Connection;
 /**
  * This class is a container for operations, every public method in this class will be taken as an extension operation.
  */
-public class WeatherOperations {
+public class WeatherZipOperations {
 
   /**
    * Example of an operation that uses the configuration and a connection instance to perform some action.
