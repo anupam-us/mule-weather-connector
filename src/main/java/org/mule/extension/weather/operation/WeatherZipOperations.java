@@ -2,11 +2,14 @@ package org.mule.extension.weather.operation;
 
 import static org.mule.runtime.extension.api.annotation.param.MediaType.ANY;
 
-import org.mule.extension.weather.connection.WeatherConfiguration;
+import java.io.InputStream;
 import org.mule.extension.weather.connection.WeatherConnection;
-import org.mule.runtime.extension.api.annotation.param.MediaType;
-import org.mule.runtime.extension.api.annotation.param.Config;
+import org.mule.extension.weather.internal.WeatherConstants;
 import org.mule.runtime.extension.api.annotation.param.Connection;
+import org.mule.runtime.extension.api.annotation.param.MediaType;
+import org.mule.runtime.extension.api.annotation.param.Parameter;
+import org.mule.runtime.extension.api.annotation.param.display.DisplayName;
+import org.mule.runtime.extension.api.annotation.param.display.Example;
 
 
 /**
@@ -14,26 +17,18 @@ import org.mule.runtime.extension.api.annotation.param.Connection;
  */
 public class WeatherZipOperations {
 
-  /**
-   * Example of an operation that uses the configuration and a connection instance to perform some action.
-   */
-  @MediaType(value = ANY, strict = false)
-  public String retrieveInfo(@Config WeatherConfiguration configuration, @Connection WeatherConnection connection){
-    return "Using Configuration [" + configuration.getConfigId() + "] with Connection id [" + connection.getId() + "]";
-  }
+	/**
+	 * This class is a container for operations, every public method in this class will be taken as an extension operation.
+	 */
 
-  /**
-   * Example of a simple operation that receives a string parameter and returns a new string message that will be set on the payload.
-   */
-  @MediaType(value = ANY, strict = false)
-  public String sayHi(String person) {
-    return buildHelloMessage(person);
-  }
-
-  /**
-   * Private Methods are not exposed as operations
-   */
-  private String buildHelloMessage(String person) {
-    return "Hello " + person + "!!!";
-  }
+     @Parameter
+     @Example("30303")
+     @DisplayName("ZIP Code")
+     private int zipCode;
+     
+     @MediaType(value = ANY, strict = false)
+     @DisplayName(WeatherConstants.ZIP)
+     public InputStream getWeatherByZip(@Connection WeatherConnection connection){
+           return connection.callHttpZIP(zipCode);
+     } 
 }
