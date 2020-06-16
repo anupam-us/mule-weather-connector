@@ -30,3 +30,4 @@ bin/
 .mule/
 .settings/
 src/.DS_Store
+.DS_Store
